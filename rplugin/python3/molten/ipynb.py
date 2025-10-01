@@ -130,6 +130,7 @@ def handle_output_types(nvim: Nvim, output_type: str, kernel: MoltenKernel, outp
         case "error":
             chunk = ErrorOutputChunk(output_data["ename"], output_data["evalue"], output_data["traceback"])
             chunk.extras = output_data
+            del chunk.extras["output_type"]
             success = False
         case _:
             chunk = to_outputchunk(
